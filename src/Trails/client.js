@@ -24,3 +24,21 @@ export const findTrails = async (searchLatitude, searchLongitude) => {
 
     return response.data;
 }
+
+export const findTrailByID = async (searchID) => {
+
+  const options = {
+    method: 'GET',
+    url: 'https://trailapi-trailapi.p.rapidapi.com/trails/' + searchID.toString(),
+    headers: {
+      'X-RapidAPI-Key': 'd102ce3527mshc4b1f040aa83cb1p137adbjsn3f7e380a5e93',
+      'X-RapidAPI-Host': 'trailapi-trailapi.p.rapidapi.com'
+    }
+  };
+  
+  const response = await axios.request(options);
+  console.log(response.data);
+
+  return response.data;
+
+}
