@@ -22,7 +22,7 @@ export const findTrails = async (searchLatitude, searchLongitude) => {
     const response = await axios.request(options);
     console.log(response.data);
 
-    return response.data;
+    return response.data.data;
 }
 
 export const findTrailByID = async (searchID) => {
@@ -39,6 +39,6 @@ export const findTrailByID = async (searchID) => {
   const response = await axios.request(options);
   console.log(response.data);
 
-  return response.data;
+  return response.data.data;
 
 }

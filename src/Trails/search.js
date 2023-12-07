@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TrailAPI_API , API_KEY} from "./client";
 import * as client from "./client";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function Search() {
@@ -9,9 +10,9 @@ function Search() {
     const [searchLatitude, setSearchLatitude] = useState(0);
     const [searchLongitude, setSearchLongitude] = useState(0);
 
-    const [searchID, setSearchID] = useState(0);
+    const [searchID, setSearchID] = useState(288869);
 
-    const [results, setResults] = useState(null);
+    const [results, setResults] = useState([]);
 
     const fetchTrails = async () => {
 
@@ -31,6 +32,11 @@ function Search() {
 
         console.log("find complete");
     }
+
+    useEffect(() => {
+        findByID()
+      }, []);
+
 
     return (
         <div>
@@ -75,9 +81,24 @@ function Search() {
 
             <hr/>
 
-            <pre>
+            {/* <pre>
                 {JSON.stringify(results, null, 2)}
-            </pre>
+            </pre> */}
+
+            <div class="d-flex flex-row flex-wrap">
+                {results.map((trail) => (
+                    <div class="card .col-md-8">
+                        <img src="green2.jpg"
+                            class="card-img-top" alt="..."></img>
+                        <div class="card-body">
+                            <h5 class="card-title">{trail.name}</h5>
+                            <p class="card-text">
+                                {trail.description}
+                            </p>
+                        </div>
+                    </div>    
+                ))}
+            </div>
         </div>
     );
 }
